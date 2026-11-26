@@ -1,0 +1,10 @@
+{% extends "layouts.master" %}
+{% block content %}
+<section class="hero"><h1>سما بوتيك</h1><p>فساتين سهرة ومناسبات بلمسة وردية ناعمة</p><a class="btn" href="{{ link('products') }}">تسوقي الآن</a></section>
+<div class="wrap">
+  <div class="cats">{% for c in categories %}<a href="{{ c.url }}"><span></span>{{ c.name }}</a>{% endfor %}</div>
+  {% component home %}
+  <h2 class="t">وصل حديثاً</h2>
+  <salla-products-list source="latest" limit="8"></salla-products-list>
+</div>
+{% endblock %}

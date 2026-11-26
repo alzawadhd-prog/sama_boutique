@@ -1,0 +1,14 @@
+{% extends "layouts.master" %}
+{% block content %}
+<div class="wrap"><h2 class="t">سلة التسوق</h2>
+{% hook 'cart:items.start' %}
+{% for item in cart.items %}
+<div style="display:flex;gap:16px;border-bottom:1px solid var(--sama-line);padding:16px 0">
+  <img src="{{ item.product_image }}" alt="{{ item.product_name }}" width="90">
+  <div style="flex:1"><b>{{ item.product_name }}</b><div class="price">{{ item.total|money }}</div>
+  <salla-quantity-input cart-item-id="{{ item.id }}" value="{{ item.quantity }}"></salla-quantity-input></div>
+</div>
+{% else %}<p style="text-align:center">سلتك فارغة</p>{% endfor %}
+{% if cart.items|length %}<p>الإجمالي: <b>{{ cart.total|money }}</b></p><salla-button width="wide" onclick="salla.cart.submit()">إتمام الطلب</salla-button>{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ user.language.code }}" dir="{{ user.language.dir }}">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  {% hook head %}
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+</head>
+<body>
+  {% hook 'body:start' %}
+  <div class="bar">توصيل سريع ✦ الدفع عند الاستلام متاح</div>
+  <header class="head wrap">
+    <button data-sama-menu aria-label="القائمة" style="background:none;border:0">☰</button>
+    <a href="{{ link('/') }}" class="logo">سما بوتيك</a>
+    <nav class="nav"><a href="{{ link('/') }}">الرئيسية</a><salla-menu></salla-menu></nav>
+    <div><salla-search></salla-search> <salla-user-menu></salla-user-menu> <salla-cart-summary></salla-cart-summary></div>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer class="foot"><div class="logo" style="color:inherit">سما بوتيك</div><p>فساتين بأناقة ناعمة</p><salla-social></salla-social><salla-payments></salla-payments></footer>
+  {% hook 'body:end' %}
+  <script defer src="{{ 'app.js' | asset }}"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "layouts.master" %}
+{% block content %}
+<div class="wrap"><salla-breadcrumb></salla-breadcrumb>
+<div class="pd">
+  <div>{% for img in product.images %}<img src="{{ img.url }}" alt="{{ img.alt|default(product.name) }}" loading="lazy">{% endfor %}</div>
+  <div>
+    <h1 style="font-family:Amiri,serif">{{ product.name }}</h1>
+    <div class="price">{% if product.is_on_sale %}{{ product.sale_price|money }} <s>{{ product.regular_price|money }}</s>{% else %}{{ product.price|money }}{% endif %}</div>
+    <div>{{ product.description|raw }}</div>
+    <form onchange="salla.product.getPrice(new FormData(event.target.form))">
+      <input type="hidden" name="id" value="{{ product.id }}">
+      <salla-product-options product-id="{{ product.id }}" options="{{ product.options|json_encode }}"></salla-product-options>
+      <salla-quantity-input name="quantity" value="1"></salla-quantity-input>
+      <salla-add-product-button product-id="{{ product.id }}" product-status="{{ product.status }}" product-type="{{ product.type }}" width="wide"></salla-add-product-button>
+    </form>
+  </div>
+</div>
+<h2 class="t">قد يعجبك أيضاً</h2><salla-products-slider source="related" source-value="{{ product.id }}"></salla-products-slider>
+</div>
+{% endblock %}
